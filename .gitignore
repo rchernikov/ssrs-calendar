@@ -1,0 +1,9 @@
+# comment
+bin/
+*.rdl.data
+*.data
+*.rptsln
+*.sln
+*.suo
+*.rptproj
+*.rptproj.user
