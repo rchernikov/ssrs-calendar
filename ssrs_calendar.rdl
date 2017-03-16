@@ -113,17 +113,18 @@ Function getDay(ByVal columnIndex as Integer, ByVal rowIndex as Integer) as Stri
 End Function
 
 Function getWeekOfYear(ByVal rowIndex as Integer) as String
+  ' TODO the function is not exactly ESO compatible yet. For example Dec 2007 shows 53d week instead of 1st week of 2008
   DIM day = getDay(1, rowIndex)
   if rowIndex = 1 then
     day = 1
   end if
   if len(day) &gt; 0 then
     DIM middleOfWeek as Date = DateSerial(year, month, day)
-    if firstDayOfWeek = 1 then
-      return DatePart(DateInterval.WeekOfYear, middleOfWeek, vbMonday, 0)
-    else
-      return DatePart(DateInterval.WeekOfYear, middleOfWeek, vbSunday, 0)
+    if DatePart(DateInterval.Weekday, middleOfWeek, 0) = 1 and firstDayOfWeek = 0 then
+      ' if the week starts on sunday use the next monday to meet ESO 8601 week date system
+      middleOfWeek = DateAdd(DateInterval.Day, 1, middleOfWeek)
     end if
+    return DatePart(DateInterval.WeekOfYear, middleOfWeek, vbMonday, FirstWeekOfYear.FirstFourDays)
   end if
   return Nothing
 End Function
