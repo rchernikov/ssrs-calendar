@@ -1,5 +1,5 @@
 # ssrs-calendar
-Monthly Calendar -- SSRS report.
+Monthly Calendar -- SSRS report
 
 Visit the SSRS Calendar wiki to see screenshots and full description: https://github.com/rchernikov/ssrs-calendar/wiki
 
